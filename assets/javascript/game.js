@@ -11,6 +11,7 @@ var guessesMade = [];
 if (guessesLeft === 0 || guessesLeft === 9) {
 var computerChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
+
 console.log("computers choice " +computerChoice);
 }
 
@@ -24,10 +25,13 @@ document.onkeyup = function(event) {
 
     var userChoice = event.key;
     console.log("users choice " + userChoice);
+    
+    guessesMade.push(userChoice);
+    
+    
+    
+    yourChoiceHTML.innerHTML = " " + guessesMade;
 
-
-
-    yourChoiceHTML.innerHTML = " " + userChoice;
 
 
     if (userChoice === computerChoice) {
@@ -35,6 +39,9 @@ document.onkeyup = function(event) {
         winsScoreHTML.innerHTML = " " + winsScore++;
         alert("you win!");
         guessesLeft = 9;
+        guessesMade.length = 0;
+        
+        
     } else if (userChoice != computerChoice && guessesLeft > 0) {
         guessesLeftHTML.innerHTML = " " + guessesLeft--;
 
@@ -42,6 +49,7 @@ document.onkeyup = function(event) {
     } else {
         lossesScoreHTML.innerHTML = " " + lossesScore++;
         guessesLeft = 9;
+        guessesMade.length = 0;
         
 
         
