@@ -7,13 +7,9 @@ var lossesScore = 0;
 var guessesLeft = 9;
 var guessesMade = [];
 
-
-if (guessesLeft === 0 || guessesLeft === 9) {
-var computerChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+var computerChoice = "";
 
 
-console.log("computers choice " +computerChoice);
-}
 
 var winsScoreHTML = document.getElementById("winsScore");
 var lossesScoreHTML = document.getElementById("lossesScore");
@@ -22,11 +18,15 @@ var yourChoiceHTML = document.getElementById("guessesMade");
 
 
 document.onkeyup = function(event) { 
-
+    if (guessesLeft === 9) {
+    computerChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    console.log("computers choice " + computerChoice);
+    }
+    
     var userChoice = event.key;
     console.log("users choice " + userChoice);
     
-    guessesMade.push(userChoice);
+    guessesMade.push(" " + userChoice);
     
     
     
@@ -42,7 +42,8 @@ document.onkeyup = function(event) {
         guessesMade.length = 0;
         
         
-    } else if (userChoice != computerChoice && guessesLeft > 0) {
+    } 
+    else if (userChoice != computerChoice && guessesLeft > 0) {
         guessesLeftHTML.innerHTML = " " + guessesLeft--;
 
 
