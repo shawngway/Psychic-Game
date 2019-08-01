@@ -16,46 +16,43 @@ var lossesScoreHTML = document.getElementById("lossesScore");
 var guessesLeftHTML = document.getElementById("guessesLeft");
 var yourChoiceHTML = document.getElementById("guessesMade");
 
+document.onkeyup = function (event) {
 
-document.onkeyup = function(event) { 
     if (guessesLeft === 9) {
-    computerChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-    console.log("computers choice " + computerChoice);
+        computerChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+        console.log("computers choice " + computerChoice);
     }
-    
+
     var userChoice = event.key;
     console.log("users choice " + userChoice);
-    
-    guessesMade.push(" " + userChoice);
-    
-    
-    
+
+    guessesMade.push(userChoice);
+
     yourChoiceHTML.innerHTML = " " + guessesMade;
-
-
 
     if (userChoice === computerChoice) {
         winsScore++;
-        winsScoreHTML.innerHTML = " " + winsScore++;
+        guessesLeft = 9;
+        winsScoreHTML.innerHTML = winsScore;
         alert("you win!");
+        guessesMade.length = 0;
+        console.log("win");
+    }
+    else if (guessesLeft === 1) {
+        lossesScore++;
+        lossesScoreHTML.innerHTML = lossesScore;
         guessesLeft = 9;
         guessesMade.length = 0;
-        
-        
-    } 
-    else if (userChoice != computerChoice && guessesLeft > 0) {
-        guessesLeftHTML.innerHTML = " " + guessesLeft--;
+        console.log("loss");
 
+    } else if (userChoice != computerChoice) {
+        guessesLeft--;
+        guessesLeftHTML.innerHTML = " " + guessesLeft;
+        console.log("miss");
 
-    } else {
-        lossesScoreHTML.innerHTML = " " + lossesScore++;
-        guessesLeft = 9;
-        guessesMade.length = 0;
-        
-
-        
     }
 
-    
+
+
 
 }
