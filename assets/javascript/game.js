@@ -29,20 +29,23 @@ document.onkeyup = function (event) {
     guessesMade.push(userChoice);
 
     yourChoiceHTML.innerHTML = " " + guessesMade;
-
+    
     if (userChoice === computerChoice) {
         winsScore++;
         guessesLeft = 9;
         winsScoreHTML.innerHTML = winsScore;
         alert("you win!");
         guessesMade.length = 0;
+        yourChoiceHTML.innerHTML = " " + guessesMade;
         console.log("win");
     }
     else if (guessesLeft === 1) {
         lossesScore++;
         lossesScoreHTML.innerHTML = lossesScore;
+        alert("you lose!");
         guessesLeft = 9;
         guessesMade.length = 0;
+        yourChoiceHTML.innerHTML = " " + guessesMade;
         console.log("loss");
 
     } else if (userChoice != computerChoice) {
